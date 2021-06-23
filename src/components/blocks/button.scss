@@ -5,7 +5,7 @@
   @extend %small-text;
   display: block;
   margin: auto;
-  max-width: 500px;
+  max-width: 42.487vh;
   width: 100%;
   height: $button-height;
   transition: 0.3s;
@@ -26,7 +26,6 @@
 
   &--shuffle {
     margin-top: 6.772vh; //54.99px % 1vh
-    max-width: 400px;
     background-color: #F80300;
   }
 }
