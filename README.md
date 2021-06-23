@@ -1,70 +1,41 @@
-# Getting Started with Create React App
+# Тестовое задание SweetSoft (frontend)
+Необходимо разработать мини-игру "Кубики". Задача пользователя - выбрать все кубики одинакового цвета за минимальное количество времени.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Скрипт приложения
+* Пользователь заходит в веб-приложение, вводит свое имя.
+* Перед ним появляется окно в котором в хедере располагается логотип (Cube), таймер.
+* В основной части экрана располагается информация о его имени, его лучшее время игры, кнопка начать.
+* При нажатии на кнопку начать - запускается таймер игры, в верхней части экрана появляется кнопка перемешать (при нажатии на которую таймер сбрасывается и запускается по новой, кубики перемешиваются) и кнопка завершить (результат не засчитывается, таймер сбрасывается).
+* В основной части экрана контент меняется на поле 5х5 с кубиками одинаковой ширины и высоты но различного цвета (всего 5). 
+* **Обязательное условие**, минимальное кол-во кубиков одного и того же цвета - 2, при генерации кубиков необходимо чтобы использовались все 5 цветов (Т.е. при генерации кубиков обязательно должны быть минимум 2 кубика каждого цвета). При выборе необходимо учитывать что нельзя оставить только один кубик одного цвета (обязательно минимум 2), так как при повторной попытке будет ошибка.  Также ниже поля располагается кнопка проверить которая изначально заблокирована. 
+* При клике на кубик он выделяется каким-либо цветом. Задача пользователя - выбирать кубики одинакового цвета, нажимать кнопку "проверить", если они действительно одного цвета - удалять их из поля.
+* Валидация кнопки "Проверить" - заблокирована изначально, при выборе минимум 2х кубиков любого цвета - разблокирована. При корректном выборе кубиков одного цвета - текст меняется на - "Успешно" и заливка зеленая, при некорректном выборе - "Ошибка", заливка красная
+* Как только все кубики выбраны из поля корректно - игра завершается на экране выводится информация о том сколько времени человек потратил на игру.
+* Лучший результат за все время пользователя должен где-либо храниться и быть доступен при повторном входе на сайт.
+* Бонус. Если в процессе игры пользователь закрыл вкладку браузера с игрой - игра ставится на паузу и при повторном входе у пользоветеля есть возможность продолжить игру.
 
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+ ## Макеты
+ Макет доступен в [Фигме](https://www.figma.com/file/rRiodUBWSBHXdHYyuqF1z7/test?node-id=0%3A1).<br>
+ Игра должна поддерживаться устройствами с разрешением от 320 до 992px ширины.<br>
+  На десктопе выводить просто мобильный экран, пустое место просто залить цветом.<br>
+ 
+ ## Ассеты
+ В этом репозитории находятся svg изображения которые вам будут необходимы, все необходимые данные замокать.
+ 
+ ## Стек
+ Typescript<br>
+ Любое удобное решение для вас<br>
+ 
+ ## Деплой
+ Проект должен быть залит на любой удобный сервис (github pages, heroku, etc)
+ 
+ ## Оценка работы
+ Во внимание будет принято помимо результата и качества кода
+ * Структура проекта
+ * Работа со статической типизацией
+ * Именование веток и коммитов
+ * Наличие комментариев в коде
+ * Покрытие тестами
+ 
+ ## Контакты 
+ По всем вопросам писать сюда [@cevcode](https://t.me/cevcode)
