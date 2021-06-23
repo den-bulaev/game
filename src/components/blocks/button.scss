@@ -8,19 +8,25 @@
   max-width: 500px;
   width: 100%;
   height: $button-height;
-  transition: 0.5s;
+  transition: 0.3s;
   font-weight: inherit;
   border: none;
   border-radius: 10px;
-  box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.04);
+  box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.4);
   color: white;
 
   &:hover {
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.04);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.4);
   }
 
   &:active {
     opacity: 0.5;
-    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.04);
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.4);
+  }
+
+  &--shuffle {
+    margin-top: 6.772vh; //54.99px % 1vh
+    max-width: 400px;
+    background-color: #F80300;
   }
 }

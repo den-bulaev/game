@@ -1,0 +1,43 @@
+@import "../../utils/mixins";
+@import "../../utils/extends";
+@import "../blocks/button.scss";
+@import "../blocks/colors.scss";
+
+.game {
+  @include rectangle;
+  background-color: white;
+
+  &__logo {
+    margin-top: 5.788vh; // 47px % 8.12(1vh)
+    width: 50px;
+    height: 50px;
+  }
+
+  &__timer {
+    margin-top: 1.847vh; // 15px % 1vh
+    color: $c-blue;
+  }
+
+  &__board {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    gap: 5px;
+    margin: 1.847vh auto 0;
+    max-width: 42.487vh; // (100vw - 30px) % 1vh    30px === parent margins(left + right)
+    width: $square-side; // 100vw - 30px
+    max-height: $square-side;
+    height: 42.487vh;
+    background-color: pink;
+  }
+
+  &__button-check {
+    margin-top: 6.157vh; // 50px % 1vh
+    background-color: #787878;
+  }
+
+  &__button-complete {
+    margin-top: 1.847vh; //15px % 1vh
+    background-color: #383434;
+  }
+}

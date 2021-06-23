@@ -4,11 +4,13 @@
 
 .authorization {
   @include rectangle;
-  background-color: #2562FF;
+  background-color: $c-blue;
 
   &__logo {
     margin-top: 15.02vh;
     margin-bottom: 10.96vh;
+    width: 86px;
+    height: 86px;
   }
 
   &__login-field {
