@@ -61,7 +61,11 @@ const Game = () => {
 
       <div className="game__board">
         {colors.map((color) => (
-          <button type="button" className={`${color} game__field`} />
+          <button
+            key={Math.random()}
+            type="button"
+            className={`${color} game__field`}
+          />
         ))}
       </div>
 
