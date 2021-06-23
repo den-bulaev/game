@@ -1,3 +1,7 @@
+[DEMO](https://den-bulaev.github.io/game/)
+
+[DESIGN](https://www.figma.com/file/rRiodUBWSBHXdHYyuqF1z7/test?node-id=0%3A1)
+
 # Тестовое задание SweetSoft (frontend)
 Необходимо разработать мини-игру "Кубики". Задача пользователя - выбрать все кубики одинакового цвета за минимальное количество времени.
 
