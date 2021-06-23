@@ -40,6 +40,10 @@ const Game = () => {
     customFill(' ', 'green', 'red', 'blue', 'pink', 'orange'),
   );
 
+  const fieldHandleClick = (event) => {
+    event.target.classList.toggle('game__field--checked');
+  };
+
   return (
     <div className="game">
       <img
@@ -65,6 +69,8 @@ const Game = () => {
             key={Math.random()}
             type="button"
             className={`${color} game__field`}
+            value={color}
+            onClick={fieldHandleClick}
           />
         ))}
       </div>
