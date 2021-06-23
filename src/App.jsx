@@ -1,10 +1,12 @@
 import React from 'react';
 
-import './App.css';
+import Autorization from './components/Authorization/Autorization';
+
+import './App.scss';
 
 function App() {
   return (
-    <h1>OK</h1>
+    <Autorization />
   );
 }
 

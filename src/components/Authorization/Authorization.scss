@@ -1,0 +1,32 @@
+@import "../../utils/mixins";
+@import "../../utils/extends";
+@import "../../utils/variables";
+
+.authorization {
+  @include rectangle;
+  background-color: #2562FF;
+
+  &__logo {
+    margin-top: 15.02vh;
+    margin-bottom: 10.96vh;
+  }
+
+  &__login-field {
+    @extend %small-text;
+    padding-left: 20px;
+    margin-top: 3.325vh;
+    margin-bottom: 31.157vh;
+    max-width: 600px;
+    width: calc(100% - 25px);
+    height: $button-height;
+    border: none;
+    border-radius: 5px;
+    font-weight: 400;
+    background-color: #EFF0F0;
+    color: #595252;
+  }
+
+  &__button {
+    background-color: #F80300;
+  }
+}
