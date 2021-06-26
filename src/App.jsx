@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
 import Autorization from './components/Authorization/Autorization';
 import Game from './components/Game/Game';
@@ -8,15 +8,17 @@ import './App.scss';
 
 function App() {
   return (
-    <>
-      <Route path="/authorization">
-        <Autorization />
-      </Route>
-
+    <Switch>
       <Route path="/game">
         <Game />
       </Route>
-    </>
+
+      <Route path="/" exact>
+        <Autorization />
+      </Route>
+
+      <p>page not found</p>
+    </Switch>
   );
 }
 
