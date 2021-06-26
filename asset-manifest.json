@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/game/static/css/main.164adede.chunk.css",
-    "main.js": "/game/static/js/main.cf83ee8c.chunk.js",
-    "main.js.map": "/game/static/js/main.cf83ee8c.chunk.js.map",
+    "main.css": "/game/static/css/main.b7fbde0a.chunk.css",
+    "main.js": "/game/static/js/main.836e9873.chunk.js",
+    "main.js.map": "/game/static/js/main.836e9873.chunk.js.map",
     "runtime-main.js": "/game/static/js/runtime-main.0cb6e178.js",
     "runtime-main.js.map": "/game/static/js/runtime-main.0cb6e178.js.map",
-    "static/js/2.2a7fad32.chunk.js": "/game/static/js/2.2a7fad32.chunk.js",
-    "static/js/2.2a7fad32.chunk.js.map": "/game/static/js/2.2a7fad32.chunk.js.map",
+    "static/js/2.11fea8eb.chunk.js": "/game/static/js/2.11fea8eb.chunk.js",
+    "static/js/2.11fea8eb.chunk.js.map": "/game/static/js/2.11fea8eb.chunk.js.map",
     "index.html": "/game/index.html",
-    "static/css/main.164adede.chunk.css.map": "/game/static/css/main.164adede.chunk.css.map",
-    "static/js/2.2a7fad32.chunk.js.LICENSE.txt": "/game/static/js/2.2a7fad32.chunk.js.LICENSE.txt",
+    "static/css/main.b7fbde0a.chunk.css.map": "/game/static/css/main.b7fbde0a.chunk.css.map",
+    "static/js/2.11fea8eb.chunk.js.LICENSE.txt": "/game/static/js/2.11fea8eb.chunk.js.LICENSE.txt",
     "static/media/logo.88baa581.svg": "/game/static/media/logo.88baa581.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.0cb6e178.js",
-    "static/js/2.2a7fad32.chunk.js",
-    "static/css/main.164adede.chunk.css",
-    "static/js/main.cf83ee8c.chunk.js"
+    "static/js/2.11fea8eb.chunk.js",
+    "static/css/main.b7fbde0a.chunk.css",
+    "static/js/main.836e9873.chunk.js"
   ]
 }
