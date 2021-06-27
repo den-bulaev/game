@@ -56,9 +56,9 @@ const Game = () => {
   ).size;
 
   const handleClickChoose = (event) => {
-    const color = event.target.value;
     const classes = event.target.classList;
     const field = event.target;
+    const id = field.dataset.buttonNumber;
 
     classes.toggle('Board__field--checked');
 
@@ -66,7 +66,7 @@ const Game = () => {
       checkedFields.push(field);
     } else {
       const targetIndex = checkedFields.findIndex(
-        (element) => element.value.includes(color),
+        (element) => element.dataset.buttonNumber === id,
       );
       checkedFields.splice(targetIndex, 1);
     }
