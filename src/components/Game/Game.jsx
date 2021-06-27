@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import logo from '../../icons/logo.svg';
 import Board from '../Board/Board';
@@ -8,6 +8,12 @@ import './Game.scss';
 const Game = () => {
   const [buttonCollor, setButtonCollor] = useState('#787878');
   const [buttonText, setButtonText] = useState('Проверить');
+  const [shuffledCollors, setShuffledCollors] = useState([]);
+
+  useEffect(() => {
+    // eslint-disable-next-line no-use-before-define
+    setShuffledCollors(getShuffledCollors());
+  }, []);
 
   const customFill = (divider = ' ', ...args) => {
     let colors = [];
@@ -97,6 +103,9 @@ const Game = () => {
       <button
         className="button button--shuffle"
         type="button"
+        onClick={useCallback(
+          () => setShuffledCollors(getShuffledCollors()),
+        )}
       >
         Перемешать
       </button>
@@ -107,7 +116,7 @@ const Game = () => {
 
       <Board
         handleClickChoose={handleClickChoose}
-        getShuffledCollors={getShuffledCollors}
+        shuffledCollors={shuffledCollors}
       />
 
       <button
