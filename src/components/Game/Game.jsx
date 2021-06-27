@@ -59,12 +59,15 @@ const Game = () => {
     const classes = event.target.classList;
     const field = event.target;
     const id = field.dataset.buttonNumber;
+    const pattern = /(red )|(green )|(blue )|(pink )|(orange )/g;
 
     classes.toggle('Board__field--checked');
 
     if (classes.value.includes('Board__field--checked')) {
-      checkedFields.push(field);
-    } else {
+      if (pattern.test(classes.value)) {
+        checkedFields.push(field);
+      }
+    } else if (pattern.test(classes.value)) {
       const targetIndex = checkedFields.findIndex(
         (element) => element.dataset.buttonNumber === id,
       );
