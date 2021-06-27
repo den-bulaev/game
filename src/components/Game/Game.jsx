@@ -1,11 +1,14 @@
-/* eslint-disable jsx-a11y/control-has-associated-label */
-import React from 'react';
+import React, { useState } from 'react';
 
 import logo from '../../icons/logo.svg';
+import Board from '../Board/Board';
 
 import './Game.scss';
 
 const Game = () => {
+  const [buttonCollor, setButtonCollor] = useState('#787878');
+  const [buttonText, setButtonText] = useState('Проверить');
+
   const customFill = (divider = ' ', ...args) => {
     let colors = [];
 
@@ -36,12 +39,51 @@ const Game = () => {
     return arrCopy;
   }
 
-  const colors = shuffle(
-    customFill(' ', 'green', 'red', 'blue', 'pink', 'orange'),
+  const getShuffledCollors = () => (
+    shuffle(customFill(' ', 'green', 'red', 'blue', 'pink', 'orange'))
   );
 
-  const fieldHandleClick = (event) => {
-    event.target.classList.toggle('game__field--checked');
+  const checkedFields = [];
+
+  const getCollorsCount = () => new Set(
+    checkedFields.map((field) => field.value),
+  ).size;
+
+  const handleClickChoose = (event) => {
+    const color = event.target.value;
+    const classes = event.target.classList;
+    const field = event.target;
+
+    classes.toggle('Board__field--checked');
+
+    if (classes.value.includes('Board__field--checked')) {
+      checkedFields.push(field);
+    } else {
+      const targetIndex = checkedFields.findIndex(
+        (element) => element.value.includes(color),
+      );
+      checkedFields.splice(targetIndex, 1);
+    }
+
+    if (checkedFields.length >= 2 && getCollorsCount() === 1) {
+      setButtonCollor('#2562FF');
+      setButtonText('Проверить');
+    }
+  };
+
+  const handleClickCheck = () => {
+    if (checkedFields.length > 1) {
+      const color = checkedFields[0].value.split(' ')[0];
+      const colorsCount = getCollorsCount();
+
+      if (colorsCount > 1) {
+        setButtonCollor('#FF0000');
+        setButtonText('Ошибка');
+      } else {
+        checkedFields.map((field) => field.classList.remove(color));
+        checkedFields.length = 0;
+      }
+    }
   };
 
   return (
@@ -63,23 +105,20 @@ const Game = () => {
         10:30
       </div>
 
-      <div className="game__board">
-        {colors.map((color) => (
-          <button
-            key={Math.random()}
-            type="button"
-            className={`${color} game__field`}
-            value={color}
-            onClick={fieldHandleClick}
-          />
-        ))}
-      </div>
+      <Board
+        handleClickChoose={handleClickChoose}
+        getShuffledCollors={getShuffledCollors}
+      />
 
       <button
+        style={{
+          backgroundColor: buttonCollor,
+        }}
         type="button"
         className="button game__button-check"
+        onClick={handleClickCheck}
       >
-        Проверить
+        {buttonText}
       </button>
 
       <button

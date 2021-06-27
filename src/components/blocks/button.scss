@@ -7,7 +7,7 @@
   margin: auto;
   max-width: 42.487vh;
   width: 100%;
-  height: $button-height;
+  height: 6.157vh; // 50px / 1vh(8.12px)
   transition: 0.3s;
   font-weight: inherit;
   border: none;
@@ -16,7 +16,6 @@
   color: white;
 
   &:hover {
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.4);
     cursor: pointer;
   }
 
@@ -26,7 +25,7 @@
   }
 
   &--shuffle {
-    margin-top: 6.772vh; //54.99px % 1vh
+    margin-top: 6.772vh; //54.99px / 1vh
     background-color: #F80300;
   }
 }
