@@ -87,11 +87,11 @@ const Game = () => {
   };
 
   return (
-    <div className="game">
+    <div className="Game">
       <img
         src={logo}
         alt=""
-        className="game__logo"
+        className="Game__logo"
       />
 
       <button
@@ -101,7 +101,7 @@ const Game = () => {
         Перемешать
       </button>
 
-      <div className="game__timer">
+      <div className="Game__timer">
         10:30
       </div>
 
@@ -115,7 +115,7 @@ const Game = () => {
           backgroundColor: buttonCollor,
         }}
         type="button"
-        className="button game__button-check"
+        className="button Game__button-check"
         onClick={handleClickCheck}
       >
         {buttonText}
@@ -123,7 +123,7 @@ const Game = () => {
 
       <button
         type="button"
-        className="button game__button-complete"
+        className="button Game__button-complete"
       >
         Завершить
       </button>
