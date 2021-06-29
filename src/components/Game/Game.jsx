@@ -1,6 +1,8 @@
 import React, { useCallback, useEffect, useState } from 'react';
 
 import logo from '../../icons/logo.svg';
+import sound1 from '../../sounds/sound1.wav';
+import sound2 from '../../sounds/sound2.wav';
 import Board from '../Board/Board';
 
 import './Game.scss';
@@ -51,6 +53,13 @@ const Game = () => {
 
   const checkedFields = [];
 
+  const playSound = (sound) => {
+    const player = new Audio(sound);
+
+    player.preload = 'auto';
+    player.play();
+  };
+
   const getCollorsCount = () => new Set(
     checkedFields.map((field) => field.value),
   ).size;
@@ -65,9 +74,13 @@ const Game = () => {
 
     if (classes.value.includes('Board__field--checked')) {
       if (pattern.test(classes.value)) {
+        playSound(sound1);
+
         checkedFields.push(field);
       }
     } else if (pattern.test(classes.value)) {
+      playSound(sound2);
+
       const targetIndex = checkedFields.findIndex(
         (element) => element.dataset.buttonNumber === id,
       );
