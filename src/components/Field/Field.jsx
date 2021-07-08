@@ -17,7 +17,7 @@ const playSound = (sound) => {
 const Field = ({ color, id, setCheckedFields }) => {
   const [isChecked, setChecked] = useState(false);
 
-  const handleClickChoose = () => {
+  const handleClickChoose = (event) => {
     if (isChecked) {
       playSound(sound2);
     } else {
@@ -26,10 +26,10 @@ const Field = ({ color, id, setCheckedFields }) => {
 
     setCheckedFields((prev) => {
       if (isChecked) {
-        return prev - 1;
+        return prev.filter((element) => element !== event.target);
       }
 
-      return prev + 1;
+      return [...prev, event.target];
     });
 
     setChecked((prev) => !prev);
