@@ -1,11 +1,17 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import logo from '../../icons/logo.svg';
-import sound1 from '../../sounds/sound1.wav';
-import sound2 from '../../sounds/sound2.wav';
 import Board from '../Board/Board';
 
 import './Game.scss';
+
+let count = 0;
+
+const setSquareNumber = () => {
+  count += 1;
+
+  return count;
+};
 
 const customFill = (divider = ' ', ...args) => {
   let colors = [];
@@ -41,72 +47,27 @@ const getShuffledColors = () => (
   shuffle(customFill(' ', 'green', 'red', 'blue', 'pink', 'orange'))
 );
 
-const playSound = (sound) => {
-  const player = new Audio(sound);
+const getSquares = (colors) => {
+  const result = colors.map((color) => ({
+    color,
+    id: setSquareNumber(),
+  }));
 
-  player.preload = 'auto';
-  player.play();
+  return result;
 };
 
 const Game = () => {
-  const [buttonCollor, setButtonColor] = useState('#787878');
-  const [buttonText, setButtonText] = useState('Проверить');
-  const [shuffledColors, setShuffledColors] = useState([]);
+  const [squares, setSquares] = useState([]);
 
   useEffect(() => {
-    // eslint-disable-next-line no-use-before-define
-    setShuffledColors(getShuffledColors());
+    setSquares(getSquares(getShuffledColors()));
   }, []);
 
-  const checkedFields = [];
+  const handleClickShuffle = () => {
+    count = 0;
 
-  const getColorsCount = () => new Set(
-    checkedFields.map((field) => field.value),
-  ).size;
-
-  const handleClickChoose = (event) => {
-    const classes = event.target.classList;
-    const field = event.target;
-    const id = field.dataset.buttonNumber;
-    const pattern = /(red )|(green )|(blue )|(pink )|(orange )/g;
-
-    classes.toggle('Board__field--checked');
-
-    if (classes.value.includes('Board__field--checked')) {
-      if (pattern.test(classes.value)) {
-        playSound(sound1);
-
-        checkedFields.push(field);
-      }
-    } else if (pattern.test(classes.value)) {
-      playSound(sound2);
-
-      const targetIndex = checkedFields.findIndex(
-        (element) => element.dataset.buttonNumber === id,
-      );
-      checkedFields.splice(targetIndex, 1);
-    }
-
-    if (checkedFields.length >= 2 && getColorsCount() === 1) {
-      setButtonColor('#2562FF');
-      setButtonText('Проверить');
-    }
+    return setSquares(getSquares(getShuffledColors()));
   };
-
-  const handleClickCheck = useCallback(() => {
-    if (checkedFields.length > 1) {
-      const color = checkedFields[0].value.split(' ')[0];
-      const colorsCount = getColorsCount();
-
-      if (colorsCount > 1) {
-        setButtonColor('#FF0000');
-        setButtonText('Ошибка');
-      } else {
-        checkedFields.map((field) => field.classList.remove(color));
-        checkedFields.length = 0;
-      }
-    }
-  });
 
   return (
     <div className="Game">
@@ -119,9 +80,7 @@ const Game = () => {
       <button
         className="button button--shuffle"
         type="button"
-        onClick={useCallback(
-          () => setShuffledColors(getShuffledColors()),
-        )}
+        onClick={handleClickShuffle}
       >
         Перемешать
       </button>
@@ -131,19 +90,15 @@ const Game = () => {
       </div>
 
       <Board
-        handleClickChoose={handleClickChoose}
-        shuffledCollors={shuffledColors}
+        squares={squares}
       />
 
       <button
-        style={{
-          backgroundColor: buttonCollor,
-        }}
         type="button"
         className="button Game__button-check"
-        onClick={handleClickCheck}
+        // onClick={handleClickCheck}
       >
-        {buttonText}
+        Проверить
       </button>
 
       <button

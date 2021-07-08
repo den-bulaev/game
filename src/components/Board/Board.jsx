@@ -1,37 +1,27 @@
-/* eslint-disable jsx-a11y/control-has-associated-label */
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import Field from '../Field/Field';
+
 import './Board.scss';
 
-const Board = ({ handleClickChoose, shuffledCollors }) => {
-  let count = 0;
-
-  const setButtonNumber = () => {
-    count += 1;
-
-    return count;
-  };
-
-  return (
-    <div className="Board">
-      {shuffledCollors.map((color) => (
-        <button
-          key={Math.random()}
-          type="button"
-          className={`${color} Board__field`}
-          value={color}
-          onClick={handleClickChoose}
-          data-button-number={setButtonNumber()}
-        />
-      ))}
-    </div>
-  );
-};
+const Board = ({ squares }) => (
+  <div className="Board">
+    {squares.map(({ id, color }) => (
+      <Field
+        id={id}
+        color={color}
+        key={id}
+      />
+    ))}
+  </div>
+);
 
 Board.propTypes = {
-  handleClickChoose: PropTypes.func.isRequired,
-  shuffledCollors: PropTypes.arrayOf(PropTypes.string).isRequired,
+  squares: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    color: PropTypes.string.isRequired,
+  })).isRequired,
 };
 
 export default React.memo(Board);
