@@ -10,17 +10,4 @@
   width: $square-side; // 100vw - 30px
   max-height: $square-side;
   height: 42.487vh;
-
-  &__field {
-    transition: 0.3s;
-  
-    &--checked {
-      transform: translate(3px, 3px);
-      box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.6);
-    }
-  
-    &:hover {
-      cursor: pointer;
-    }
-  }
 }

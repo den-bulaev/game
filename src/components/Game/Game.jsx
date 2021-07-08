@@ -58,6 +58,7 @@ const getSquares = (colors) => {
 
 const Game = () => {
   const [squares, setSquares] = useState([]);
+  const [checkedFields, setCheckedFields] = useState(0);
 
   useEffect(() => {
     setSquares(getSquares(getShuffledColors()));
@@ -91,11 +92,13 @@ const Game = () => {
 
       <Board
         squares={squares}
+        setCheckedFields={setCheckedFields}
       />
 
       <button
         type="button"
-        className="button Game__button-check"
+        className={`button Game__button-check ${checkedFields < 2 ? 'gray' : 'blue'}`}
+        disabled={checkedFields < 2}
         // onClick={handleClickCheck}
       >
         Проверить
