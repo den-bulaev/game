@@ -7,60 +7,60 @@ import Board from '../Board/Board';
 
 import './Game.scss';
 
+const customFill = (divider = ' ', ...args) => {
+  let colors = [];
+
+  if (args.length !== 5) {
+    throw new Error('Should be 5 colors!');
+  }
+
+  args.forEach((element) => {
+    colors = colors.concat((element + divider).repeat(5).trim().split(divider));
+  });
+
+  return colors;
+};
+
+function shuffle(arr) {
+  let j;
+  let temp;
+
+  const arrCopy = [...arr];
+
+  for (let i = arrCopy.length - 1; i > 0; i -= 1) {
+    j = Math.floor(Math.random() * (i + 1));
+    temp = arrCopy[j];
+    arrCopy[j] = arrCopy[i];
+    arrCopy[i] = temp;
+  }
+
+  return arrCopy;
+}
+
+const getShuffledColors = () => (
+  shuffle(customFill(' ', 'green', 'red', 'blue', 'pink', 'orange'))
+);
+
+const playSound = (sound) => {
+  const player = new Audio(sound);
+
+  player.preload = 'auto';
+  player.play();
+};
+
 const Game = () => {
-  const [buttonCollor, setButtonCollor] = useState('#787878');
+  const [buttonCollor, setButtonColor] = useState('#787878');
   const [buttonText, setButtonText] = useState('Проверить');
-  const [shuffledCollors, setShuffledCollors] = useState([]);
+  const [shuffledColors, setShuffledColors] = useState([]);
 
   useEffect(() => {
     // eslint-disable-next-line no-use-before-define
-    setShuffledCollors(getShuffledCollors());
+    setShuffledColors(getShuffledColors());
   }, []);
-
-  const customFill = (divider = ' ', ...args) => {
-    let colors = [];
-
-    if (args.length !== 5) {
-      throw new Error('Should be 5 colors!');
-    }
-
-    args.forEach((element) => {
-      colors = colors.concat((element + divider).repeat(5).trim().split(divider));
-    });
-
-    return colors;
-  };
-
-  function shuffle(arr) {
-    let j;
-    let temp;
-
-    const arrCopy = [...arr];
-
-    for (let i = arrCopy.length - 1; i > 0; i -= 1) {
-      j = Math.floor(Math.random() * (i + 1));
-      temp = arrCopy[j];
-      arrCopy[j] = arrCopy[i];
-      arrCopy[i] = temp;
-    }
-
-    return arrCopy;
-  }
-
-  const getShuffledCollors = () => (
-    shuffle(customFill(' ', 'green', 'red', 'blue', 'pink', 'orange'))
-  );
 
   const checkedFields = [];
 
-  const playSound = (sound) => {
-    const player = new Audio(sound);
-
-    player.preload = 'auto';
-    player.play();
-  };
-
-  const getCollorsCount = () => new Set(
+  const getColorsCount = () => new Set(
     checkedFields.map((field) => field.value),
   ).size;
 
@@ -87,26 +87,26 @@ const Game = () => {
       checkedFields.splice(targetIndex, 1);
     }
 
-    if (checkedFields.length >= 2 && getCollorsCount() === 1) {
-      setButtonCollor('#2562FF');
+    if (checkedFields.length >= 2 && getColorsCount() === 1) {
+      setButtonColor('#2562FF');
       setButtonText('Проверить');
     }
   };
 
-  const handleClickCheck = () => {
+  const handleClickCheck = useCallback(() => {
     if (checkedFields.length > 1) {
       const color = checkedFields[0].value.split(' ')[0];
-      const colorsCount = getCollorsCount();
+      const colorsCount = getColorsCount();
 
       if (colorsCount > 1) {
-        setButtonCollor('#FF0000');
+        setButtonColor('#FF0000');
         setButtonText('Ошибка');
       } else {
         checkedFields.map((field) => field.classList.remove(color));
         checkedFields.length = 0;
       }
     }
-  };
+  });
 
   return (
     <div className="Game">
@@ -120,7 +120,7 @@ const Game = () => {
         className="button button--shuffle"
         type="button"
         onClick={useCallback(
-          () => setShuffledCollors(getShuffledCollors()),
+          () => setShuffledColors(getShuffledColors()),
         )}
       >
         Перемешать
@@ -132,7 +132,7 @@ const Game = () => {
 
       <Board
         handleClickChoose={handleClickChoose}
-        shuffledCollors={shuffledCollors}
+        shuffledCollors={shuffledColors}
       />
 
       <button
