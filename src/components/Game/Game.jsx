@@ -67,7 +67,7 @@ const Game = () => {
   const handleClickShuffle = () => {
     count = 0;
 
-    return setSquares(getSquares(getShuffledColors()));
+    setSquares(getSquares(getShuffledColors()));
   };
 
   return (

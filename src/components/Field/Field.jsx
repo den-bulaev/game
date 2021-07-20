@@ -2,6 +2,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
+import classNames from 'classnames';
+
 import sound1 from '../../sounds/sound1.wav';
 import sound2 from '../../sounds/sound2.wav';
 
@@ -38,7 +40,11 @@ const Field = ({ color, id, setCheckedFields }) => {
   return (
     <button
       type="button"
-      className={`${color} ${isChecked && 'Field--checked'} Field`}
+      className={classNames(
+        color,
+        { 'Field--checked': isChecked },
+        'Field',
+      )}
       value={color}
       onClick={handleClickChoose}
       data-button-number={id}
