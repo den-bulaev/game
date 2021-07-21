@@ -70,6 +70,7 @@ const Game = () => {
 
     setSquares(getSquares(getShuffledColors()));
     setCheckedFieldsTotal([]);
+    setCheckedFieldsPerTurn([]);
   };
 
   const handleClickCheck = () => {
@@ -108,6 +109,7 @@ const Game = () => {
         squares={squares}
         setCheckedFieldsPerTurn={setCheckedFieldsPerTurn}
         checkedFieldsTotal={checkedFieldsTotal}
+        checkedFieldsPerTurn={checkedFieldsPerTurn}
       />
 
       <button
