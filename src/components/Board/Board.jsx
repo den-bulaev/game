@@ -5,13 +5,14 @@ import Field from '../Field/Field';
 
 import './Board.scss';
 
-const Board = ({ squares, setCheckedFields }) => (
+const Board = ({ checkedFieldsTotal, squares, setCheckedFields }) => (
   <div className="Board">
     {squares.map(({ id, color }) => (
       <Field
         id={id}
         color={color}
         setCheckedFields={setCheckedFields}
+        checkedFieldsTotal={checkedFieldsTotal}
         key={id}
       />
     ))}
@@ -24,6 +25,7 @@ Board.propTypes = {
     color: PropTypes.string.isRequired,
   })).isRequired,
   setCheckedFields: PropTypes.func.isRequired,
+  checkedFieldsTotal: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default React.memo(Board);

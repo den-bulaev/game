@@ -59,6 +59,7 @@ const getSquares = (colors) => {
 const Game = () => {
   const [squares, setSquares] = useState([]);
   const [checkedFields, setCheckedFields] = useState([]);
+  const [checkedFieldsTotal, setCheckedFieldsTotal] = useState([]);
 
   useEffect(() => {
     setSquares(getSquares(getShuffledColors()));
@@ -68,6 +69,19 @@ const Game = () => {
     count = 0;
 
     setSquares(getSquares(getShuffledColors()));
+    setCheckedFieldsTotal([]);
+  };
+
+  const handleClickCheck = () => {
+    const color = checkedFields[0].value;
+
+    if (checkedFields.every((item) => item.value === color)) {
+      setCheckedFieldsTotal(
+        (prev) => [...prev, ...checkedFields],
+      );
+    }
+
+    setCheckedFields([]);
   };
 
   return (
@@ -93,6 +107,7 @@ const Game = () => {
       <Board
         squares={squares}
         setCheckedFields={setCheckedFields}
+        checkedFieldsTotal={checkedFieldsTotal}
       />
 
       <button
@@ -101,7 +116,7 @@ const Game = () => {
           `button Game__button-check ${checkedFields.length < 2 ? 'gray' : 'blue'}`
         }
         disabled={checkedFields.length < 2}
-        // onClick={handleClickCheck}
+        onClick={handleClickCheck}
       >
         Проверить
       </button>

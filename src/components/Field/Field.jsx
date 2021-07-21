@@ -16,7 +16,9 @@ const playSound = (sound) => {
   player.play();
 };
 
-const Field = ({ color, id, setCheckedFields }) => {
+const Field = ({
+  color, id, setCheckedFields, checkedFieldsTotal,
+}) => {
   const [isChecked, setChecked] = useState(false);
 
   const handleClickChoose = (event) => {
@@ -43,6 +45,11 @@ const Field = ({ color, id, setCheckedFields }) => {
       className={classNames(
         color,
         { 'Field--checked': isChecked },
+        {
+          'Field--hidden': checkedFieldsTotal.some(
+            (element) => +element.dataset.buttonNumber === id,
+          ),
+        },
         'Field',
       )}
       value={color}
@@ -56,6 +63,7 @@ Field.propTypes = {
   color: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
   setCheckedFields: PropTypes.func.isRequired,
+  checkedFieldsTotal: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default React.memo(Field);
