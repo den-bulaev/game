@@ -22,6 +22,10 @@ const Field = ({
 }) => {
   const [isChecked, setChecked] = useState(false);
 
+  if (isChecked && checkedFieldsPerTurn.length === 0) {
+    setChecked(false);
+  }
+
   const handleClickChoose = (event) => {
     if (isChecked) {
       playSound(sound2);
