@@ -58,7 +58,7 @@ const getSquares = (colors) => {
 
 const Game = () => {
   const [squares, setSquares] = useState([]);
-  const [checkedFields, setCheckedFields] = useState([]);
+  const [checkedFieldsPerTurn, setCheckedFieldsPerTurn] = useState([]);
   const [checkedFieldsTotal, setCheckedFieldsTotal] = useState([]);
 
   useEffect(() => {
@@ -73,15 +73,15 @@ const Game = () => {
   };
 
   const handleClickCheck = () => {
-    const color = checkedFields[0].value;
+    const color = checkedFieldsPerTurn[0].value;
 
-    if (checkedFields.every((item) => item.value === color)) {
+    if (checkedFieldsPerTurn.every((item) => item.value === color)) {
       setCheckedFieldsTotal(
-        (prev) => [...prev, ...checkedFields],
+        (prev) => [...prev, ...checkedFieldsPerTurn],
       );
     }
 
-    setCheckedFields([]);
+    setCheckedFieldsPerTurn([]);
   };
 
   return (
@@ -106,16 +106,16 @@ const Game = () => {
 
       <Board
         squares={squares}
-        setCheckedFields={setCheckedFields}
+        setCheckedFieldsPerTurn={setCheckedFieldsPerTurn}
         checkedFieldsTotal={checkedFieldsTotal}
       />
 
       <button
         type="button"
         className={
-          `button Game__button-check ${checkedFields.length < 2 ? 'gray' : 'blue'}`
+          `button Game__button-check ${checkedFieldsPerTurn.length < 2 ? 'gray' : 'blue'}`
         }
-        disabled={checkedFields.length < 2}
+        disabled={checkedFieldsPerTurn.length < 2}
         onClick={handleClickCheck}
       >
         Проверить

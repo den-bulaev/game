@@ -5,13 +5,13 @@ import Field from '../Field/Field';
 
 import './Board.scss';
 
-const Board = ({ checkedFieldsTotal, squares, setCheckedFields }) => (
+const Board = ({ checkedFieldsTotal, squares, setCheckedFieldsPerTurn }) => (
   <div className="Board">
     {squares.map(({ id, color }) => (
       <Field
         id={id}
         color={color}
-        setCheckedFields={setCheckedFields}
+        setCheckedFieldsPerTurn={setCheckedFieldsPerTurn}
         checkedFieldsTotal={checkedFieldsTotal}
         key={id}
       />
@@ -24,7 +24,7 @@ Board.propTypes = {
     id: PropTypes.number.isRequired,
     color: PropTypes.string.isRequired,
   })).isRequired,
-  setCheckedFields: PropTypes.func.isRequired,
+  setCheckedFieldsPerTurn: PropTypes.func.isRequired,
   checkedFieldsTotal: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 

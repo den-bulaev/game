@@ -17,7 +17,7 @@ const playSound = (sound) => {
 };
 
 const Field = ({
-  color, id, setCheckedFields, checkedFieldsTotal,
+  color, id, setCheckedFieldsPerTurn, checkedFieldsTotal,
 }) => {
   const [isChecked, setChecked] = useState(false);
 
@@ -28,7 +28,7 @@ const Field = ({
       playSound(sound1);
     }
 
-    setCheckedFields((prev) => {
+    setCheckedFieldsPerTurn((prev) => {
       if (isChecked) {
         return prev.filter((element) => element !== event.target);
       }
@@ -62,7 +62,7 @@ const Field = ({
 Field.propTypes = {
   color: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
-  setCheckedFields: PropTypes.func.isRequired,
+  setCheckedFieldsPerTurn: PropTypes.func.isRequired,
   checkedFieldsTotal: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
