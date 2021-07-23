@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
+import classNames from 'classnames';
+
 import logo from '../../icons/logo.svg';
 import Board from '../Board/Board';
 
@@ -56,10 +58,27 @@ const getSquares = (colors) => {
   return result;
 };
 
+const message = (arrPerTurn, arrTotal, error) => {
+  let text;
+
+  if (arrTotal.length > 0 && arrPerTurn.length === 0) {
+    text = 'Успех!';
+  } else {
+    text = 'Проверить';
+  }
+
+  if (error) {
+    text = 'Ошибка!';
+  }
+
+  return text;
+};
+
 const Game = () => {
   const [squares, setSquares] = useState([]);
   const [checkedFieldsPerTurn, setCheckedFieldsPerTurn] = useState([]);
   const [checkedFieldsTotal, setCheckedFieldsTotal] = useState([]);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     setSquares(getSquares(getShuffledColors()));
@@ -68,6 +87,7 @@ const Game = () => {
   const handleClickShuffle = () => {
     count = 0;
 
+    setError(false);
     setSquares(getSquares(getShuffledColors()));
     setCheckedFieldsTotal([]);
     setCheckedFieldsPerTurn([]);
@@ -80,6 +100,8 @@ const Game = () => {
       setCheckedFieldsTotal(
         (prev) => [...prev, ...checkedFieldsPerTurn],
       );
+    } else {
+      setError(true);
     }
 
     setCheckedFieldsPerTurn([]);
@@ -110,17 +132,26 @@ const Game = () => {
         setCheckedFieldsPerTurn={setCheckedFieldsPerTurn}
         checkedFieldsTotal={checkedFieldsTotal}
         checkedFieldsPerTurn={checkedFieldsPerTurn}
+        setError={setError}
       />
 
       <button
         type="button"
-        className={
-          `button Game__button-check ${checkedFieldsPerTurn.length < 2 ? 'gray' : 'blue'}`
-        }
+        className={classNames(
+          'button',
+          'Game__button-check',
+          { gray: checkedFieldsTotal.length <= 1 && checkedFieldsPerTurn.length === 0 && !error },
+          { red: error },
+          { gray: checkedFieldsPerTurn.length === 1 },
+          { blue: checkedFieldsPerTurn.length >= 2 },
+          { green: checkedFieldsTotal.length > 0 && checkedFieldsPerTurn.length === 0 && !error },
+        )}
         disabled={checkedFieldsPerTurn.length < 2}
         onClick={handleClickCheck}
       >
-        Проверить
+        {
+          message(checkedFieldsPerTurn, checkedFieldsTotal, error)
+        }
       </button>
 
       <button

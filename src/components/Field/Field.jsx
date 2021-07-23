@@ -19,6 +19,7 @@ const playSound = (sound) => {
 const Field = ({
   color, id, setCheckedFieldsPerTurn,
   checkedFieldsTotal, checkedFieldsPerTurn,
+  setError,
 }) => {
   const [isChecked, setChecked] = useState(false);
 
@@ -27,6 +28,8 @@ const Field = ({
   }
 
   const handleClickChoose = (event) => {
+    setError(false);
+
     if (isChecked) {
       playSound(sound2);
     } else {
@@ -74,6 +77,7 @@ Field.propTypes = {
   setCheckedFieldsPerTurn: PropTypes.func.isRequired,
   checkedFieldsTotal: PropTypes.arrayOf(PropTypes.object).isRequired,
   checkedFieldsPerTurn: PropTypes.arrayOf(PropTypes.object).isRequired,
+  setError: PropTypes.func.isRequired,
 };
 
 export default React.memo(Field);

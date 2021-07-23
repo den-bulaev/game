@@ -8,6 +8,7 @@ import './Board.scss';
 const Board = ({
   checkedFieldsTotal, squares,
   setCheckedFieldsPerTurn, checkedFieldsPerTurn,
+  setError,
 }) => (
   <div className="Board">
     {squares.map(({ id, color }) => (
@@ -17,6 +18,7 @@ const Board = ({
         setCheckedFieldsPerTurn={setCheckedFieldsPerTurn}
         checkedFieldsPerTurn={checkedFieldsPerTurn}
         checkedFieldsTotal={checkedFieldsTotal}
+        setError={setError}
         key={id}
       />
     ))}
@@ -31,6 +33,7 @@ Board.propTypes = {
   setCheckedFieldsPerTurn: PropTypes.func.isRequired,
   checkedFieldsTotal: PropTypes.arrayOf(PropTypes.object).isRequired,
   checkedFieldsPerTurn: PropTypes.arrayOf(PropTypes.object).isRequired,
+  setError: PropTypes.func.isRequired,
 };
 
 export default React.memo(Board);
